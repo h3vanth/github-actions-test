@@ -18,6 +18,7 @@ jobs:
           node-version: 18
       - name: Publish package
         run: |
+          echo $NODE_AUTH_TOKEN
           npm ci
           npm publish
         env:
