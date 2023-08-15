@@ -16,9 +16,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: |
+      - name: Publish package
+        run: |
           npm ci
-          echo "//<npm-registry>:8080/:_authToken=$NPM_TOKEN" > ~/.npmrc
           npm publish
         env:
-          NPM_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
