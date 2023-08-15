@@ -18,5 +18,7 @@ jobs:
           node-version: 18
       - run: |
           npm ci
-          npm set "//registry.npmjs.org/:_authToken" ${{secrets.npm_token}}
+          echo "//<npm-registry>:8080/:_authToken=$NPM_TOKEN" > ~/.npmrc
           npm publish
+        env:
+          NPM_TOKEN: ${{secrets.npm_token}}
