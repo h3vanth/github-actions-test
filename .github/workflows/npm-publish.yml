@@ -18,7 +18,11 @@ jobs:
           node-version: 18
       - name: Publish package
         run: |
+          echo _auth=$NODE_AUTH_TOKEN >> .npmrc
+          echo email=$EMAIL >> .npmrc
+          echo always-auth=true >> .npmrc
           npm ci
           npm publish
         env:
-          NODE_AUTH_TOKEN: '${{secrets.NPM_TOKEN}}'
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          EMAIL: ${{secrets.EMAIL}}
